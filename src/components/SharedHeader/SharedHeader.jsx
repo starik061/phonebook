@@ -11,17 +11,17 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
-import { useState } from 'react';
-import { Outlet } from 'react-router-dom';
 
-const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+import { useState } from 'react';
+import { Link, Outlet } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const SharedHeader = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
 
   const [anchorElUser, setAnchorElUser] = useState(null);
+
+  const navigate = useNavigate();
 
   const handleOpenNavMenu = event => {
     setAnchorElNav(event.currentTarget);
@@ -37,6 +37,18 @@ const SharedHeader = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+  const handleHomeButtonClick = () => {
+    navigate('/');
+  };
+  const handleLogInButtonClick = () => {
+    navigate('/login');
+  };
+  const handleSignUpButtonClick = () => {
+    navigate('/register');
+  };
+  const handleLogOutButtonClick = () => {
+    console.log('need to log out');
+  };
 
   return (
     <>
@@ -44,19 +56,20 @@ const SharedHeader = () => {
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <Typography
-              variant="h6"
+              variant="h5"
               noWrap
-              component="a"
-              href="/"
+              component="span"
               sx={{
                 mr: 2,
                 display: { xs: 'none', md: 'flex' },
-                fontFamily: 'monospace',
+                fontFamily: 'Segoe UI',
                 fontWeight: 700,
                 letterSpacing: '.3rem',
                 color: 'inherit',
                 textDecoration: 'none',
+                cursor: 'pointer',
               }}
+              onClick={handleHomeButtonClick}
             >
               Phonebook
             </Typography>
@@ -91,32 +104,37 @@ const SharedHeader = () => {
                 }}
               >
                 <MenuItem onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">Home</Typography>
+                  <Link to="/">
+                    <Typography textAlign="center">Home</Typography>
+                  </Link>
                 </MenuItem>
                 <MenuItem onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">Contacts</Typography>
+                  <Link to="/contacts">
+                    <Typography textAlign="center">Contacts</Typography>
+                  </Link>
                 </MenuItem>
               </Menu>
             </Box>
-
             <Typography
               variant="h5"
               noWrap
-              component="a"
-              href=""
+              component="span"
               sx={{
                 mr: 2,
                 display: { xs: 'flex', md: 'none' },
                 flexGrow: 1,
-                fontFamily: 'monospace',
+                fontFamily: 'Segoe UI',
                 fontWeight: 700,
                 letterSpacing: '.3rem',
                 color: 'inherit',
                 textDecoration: 'none',
+                cursor: 'pointer',
               }}
+              onClick={handleHomeButtonClick}
             >
               Phonebook
             </Typography>
+
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               <Button
                 onClick={handleCloseNavMenu}
@@ -124,6 +142,7 @@ const SharedHeader = () => {
               >
                 Home
               </Button>
+
               <Button
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
@@ -132,7 +151,7 @@ const SharedHeader = () => {
               </Button>
             </Box>
 
-            <Box sx={{ flexGrow: 0 }}>
+            <Box sx={{ flexGrow: 0, mr: 1 }}>
               <Tooltip title="Username">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
@@ -155,13 +174,27 @@ const SharedHeader = () => {
                 onClose={handleCloseUserMenu}
               >
                 <MenuItem onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">Logout</Typography>
+                  <Typography
+                    textAlign="center"
+                    onClick={handleLogOutButtonClick}
+                  >
+                    Log out
+                  </Typography>
                 </MenuItem>
               </Menu>
             </Box>
             <Box sx={{ flexGrow: 0 }}>
-              <Button color="inherit">Sign Up</Button>
-              <Button variant="outlined" color="inherit">
+              <Typography textAlign="center">Name</Typography>
+            </Box>
+            <Box sx={{ flexGrow: 0 }}>
+              <Button color="inherit" onClick={handleSignUpButtonClick}>
+                Sign Up
+              </Button>
+              <Button
+                variant="outlined"
+                color="inherit"
+                onClick={handleLogInButtonClick}
+              >
                 Log In
               </Button>
             </Box>

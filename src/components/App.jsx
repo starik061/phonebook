@@ -3,7 +3,7 @@ import SharedHeader from './SharedHeader/SharedHeader';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import ContactsPage from 'pages/ContactsPage';
 import LoginPage from 'pages/LoginPage';
-import RegisterPAge from 'pages/RegisterPAge';
+import RegisterPage from 'pages/RegisterPage';
 import PublicRoute from './PublicRoute/PublicRoute';
 import Homepage from 'pages/Homepage';
 
@@ -22,7 +22,7 @@ export const App = () => {
         />
         <Route
           path="register"
-          element={<PublicRoute component={<RegisterPAge />} />}
+          element={<PublicRoute component={<RegisterPage />} />}
         />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
