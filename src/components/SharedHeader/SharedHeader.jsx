@@ -50,7 +50,9 @@ const SharedHeader = () => {
   const handleLogOutButtonClick = () => {
     console.log('need to log out');
   };
-
+  const handleContactsButtonClick = () => {
+    navigate('/contacts');
+  };
   return (
     <>
       <AppBar position="static">
@@ -138,14 +140,20 @@ const SharedHeader = () => {
 
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               <Button
-                onClick={handleCloseNavMenu}
+                onClick={() => {
+                  handleHomeButtonClick();
+                  handleCloseNavMenu();
+                }}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 Home
               </Button>
 
               <Button
-                onClick={handleCloseNavMenu}
+                onClick={() => {
+                  handleContactsButtonClick();
+                  handleCloseNavMenu();
+                }}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 Contacts
