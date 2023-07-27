@@ -11,6 +11,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 import { useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
@@ -174,6 +175,7 @@ const SharedHeader = () => {
                 onClose={handleCloseUserMenu}
               >
                 <MenuItem onClick={handleCloseUserMenu}>
+                  <LogoutIcon color="disabled" sx={{ mr: 1 }} />
                   <Typography
                     textAlign="center"
                     onClick={handleLogOutButtonClick}
