@@ -1,3 +1,7 @@
+//user
+// carramba123
+// carramba123
+// carramba123@gmail.com
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -16,8 +20,15 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import { useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectIsLoggedIn, selectUserName } from 'redux/auth/selectors';
+import { logOut } from 'redux/auth/operations';
 
 const SharedHeader = () => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const userName = useSelector(selectUserName);
+
+  const dispatch = useDispatch();
   const [anchorElNav, setAnchorElNav] = useState(null);
 
   const [anchorElUser, setAnchorElUser] = useState(null);
@@ -48,7 +59,7 @@ const SharedHeader = () => {
     navigate('/register');
   };
   const handleLogOutButtonClick = () => {
-    console.log('need to log out');
+    dispatch(logOut());
   };
   const handleContactsButtonClick = () => {
     navigate('/contacts');
@@ -111,11 +122,14 @@ const SharedHeader = () => {
                     <Typography textAlign="center">Home</Typography>
                   </Link>
                 </MenuItem>
-                <MenuItem onClick={handleCloseNavMenu}>
-                  <Link to="/contacts">
-                    <Typography textAlign="center">Contacts</Typography>
-                  </Link>
-                </MenuItem>
+
+                {isLoggedIn && (
+                  <MenuItem onClick={handleCloseNavMenu}>
+                    <Link to="/contacts">
+                      <Typography textAlign="center">Contacts</Typography>
+                    </Link>
+                  </MenuItem>
+                )}
               </Menu>
             </Box>
             <Typography
@@ -148,72 +162,86 @@ const SharedHeader = () => {
               >
                 Home
               </Button>
-
-              <Button
-                onClick={() => {
-                  handleContactsButtonClick();
-                  handleCloseNavMenu();
-                }}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                Contacts
-              </Button>
+              {isLoggedIn && (
+                <Button
+                  onClick={() => {
+                    handleContactsButtonClick();
+                    handleCloseNavMenu();
+                  }}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                >
+                  Contacts
+                </Button>
+              )}
             </Box>
 
-            <Box sx={{ flexGrow: 0, mr: 1 }}>
-              <Tooltip title="Username">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                </IconButton>
-              </Tooltip>
-              <Menu
-                sx={{ mt: '45px' }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
-              >
-                <MenuItem onClick={handleCloseUserMenu}>
-                  <LogoutIcon color="disabled" sx={{ mr: 1 }} />
-                  <Typography
-                    textAlign="center"
-                    onClick={handleLogOutButtonClick}
+            {isLoggedIn && (
+              <>
+                <Box sx={{ flexGrow: 0, mr: 1 }}>
+                  <Tooltip title={userName}>
+                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                      <Avatar
+                        alt="Remy Sharp"
+                        src="/static/images/avatar/2.jpg"
+                      />
+                    </IconButton>
+                  </Tooltip>
+                  <Menu
+                    sx={{ mt: '45px' }}
+                    id="menu-appbar"
+                    anchorEl={anchorElUser}
+                    anchorOrigin={{
+                      vertical: 'top',
+                      horizontal: 'right',
+                    }}
+                    keepMounted
+                    transformOrigin={{
+                      vertical: 'top',
+                      horizontal: 'right',
+                    }}
+                    open={Boolean(anchorElUser)}
+                    onClose={handleCloseUserMenu}
                   >
-                    Log out
-                  </Typography>
-                </MenuItem>
-              </Menu>
-            </Box>
+                    <MenuItem onClick={handleCloseUserMenu}>
+                      <LogoutIcon color="disabled" sx={{ mr: 1 }} />
+                      <Typography
+                        textAlign="center"
+                        onClick={handleLogOutButtonClick}
+                      >
+                        Log out
+                      </Typography>
+                    </MenuItem>
+                  </Menu>
+                </Box>
+                <Box sx={{ flexGrow: 0 }}>
+                  <Typography textAlign="center">{userName}</Typography>
+                </Box>
+              </>
+            )}
             <Box sx={{ flexGrow: 0 }}>
-              <Typography textAlign="center">Name</Typography>
-            </Box>
-            <Box sx={{ flexGrow: 0 }}>
-              <Button color="inherit" onClick={handleSignUpButtonClick}>
-                Sign Up
-              </Button>
-              <Button
-                variant="outlined"
-                color="inherit"
-                onClick={handleLogInButtonClick}
-              >
-                Log In
-              </Button>
-              <Button
-                variant="outlined"
-                color="inherit"
-                onClick={handleLogOutButtonClick}
-              >
-                Log Out
-              </Button>
+              {!isLoggedIn && (
+                <>
+                  <Button color="inherit" onClick={handleSignUpButtonClick}>
+                    Sign Up
+                  </Button>
+                  <Button
+                    variant="outlined"
+                    color="inherit"
+                    onClick={handleLogInButtonClick}
+                  >
+                    Log In
+                  </Button>
+                </>
+              )}
+              {/* {isLoggedIn && (
+                <Button
+                  variant="outlined"
+                  color="inherit"
+                  onClick={handleLogOutButtonClick}
+                >
+                  Log Out
+                </Button>
+              )} */}
             </Box>
           </Toolbar>
         </Container>
