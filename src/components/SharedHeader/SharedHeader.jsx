@@ -207,6 +207,13 @@ const SharedHeader = () => {
               >
                 Log In
               </Button>
+              <Button
+                variant="outlined"
+                color="inherit"
+                onClick={handleLogOutButtonClick}
+              >
+                Log Out
+              </Button>
             </Box>
           </Toolbar>
         </Container>
