@@ -12,12 +12,17 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { register } from 'redux/auth/operations';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const defaultTheme = createTheme();
 
 const RegisterPage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
+  const handleLogInLinkClick = () => {
+    navigate('/login');
+  };
   const handleSubmit = event => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -98,7 +103,11 @@ const RegisterPage = () => {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link
+                  onClick={handleLogInLinkClick}
+                  variant="body2"
+                  sx={{ cursor: 'pointer' }}
+                >
                   Already have an account? Log in
                 </Link>
               </Grid>

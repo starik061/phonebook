@@ -13,20 +13,27 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useDispatch } from 'react-redux';
 import { logIn } from 'redux/auth/operations';
+import { useNavigate } from 'react-router-dom';
 
 const defaultTheme = createTheme();
 
 const LoginPage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
+  const handleSigUpLinkClick = () => {
+    navigate('/register');
+  };
   const handleSubmit = event => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-    dispatch(logIn(data));
+
+    dispatch(
+      logIn({
+        email: data.get('email'),
+        password: data.get('password'),
+      })
+    );
   };
 
   return (
@@ -86,8 +93,12 @@ const LoginPage = () => {
                 <Link href="#" variant="body2"></Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                <Link
+                  onClick={handleSigUpLinkClick}
+                  variant="body2"
+                  sx={{ cursor: 'pointer' }}
+                >
+                  Don't have an account? Sign Up
                 </Link>
               </Grid>
             </Grid>
