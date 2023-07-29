@@ -1,10 +1,11 @@
 import React from 'react';
-// import Box from '@mui/material/Box';
+
+import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
 const Homepage = () => {
   return (
-    <>
+    <Container maxWidth="xl">
       <Typography variant="h1" component="h2">
         Phonebook app
       </Typography>
@@ -16,7 +17,7 @@ const Homepage = () => {
         Used Redux Toolkit, RTK Query React Router
       </Typography>
       ;
-    </>
+    </Container>
   );
 };
 

@@ -1,4 +1,5 @@
 {
+  "plugins": ["@trivago/prettier-plugin-sort-imports"],
   "printWidth": 80,
   "tabWidth": 2,
   "useTabs": false,
@@ -8,5 +9,29 @@
   "bracketSpacing": true,
   "jsxBracketSameLine": false,
   "arrowParens": "avoid",
-  "proseWrap": "always"
+  "proseWrap": "always",
+  "importOrder": [
+    "^(react(.*)$)|^(react$)",
+    "^(next/(.*)$)|^(next$)",
+    "^(formik(.*)$)|^(formik$)",
+    "^(uuid(.*)$)|^(uuid$)",
+    "^(chakra-ui/(.*)$)|^(chakra-ui$)",
+    "<THIRD_PARTY_MODULES>",
+    "^@/pages/(.*)$",
+    "^@/layout/(.*)$",
+    "^@/components/(.*)$",
+    "^@/ui/(.*)$",
+    "^@/assets/(.*)$",
+    "^@/storage/(.*)$",
+    "^@/public/(.*)$",
+    "^@/locales/(.*)$",
+    "^@/hooks/(.*)$",
+    "^@/services/(.*)$",
+    "^@/api/(.*)$",
+    "^@/styles/(.*)$",
+    "^../(.*)",
+    "^./(.*)"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
 }

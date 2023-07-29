@@ -1,16 +1,18 @@
+import { useEffect } from 'react';
+import { Oval } from 'react-loader-spinner';
+import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import SharedHeader from './SharedHeader/SharedHeader';
-import PrivateRoute from './PrivateRoute/PrivateRoute';
+
 import ContactsPage from 'pages/ContactsPage';
+import Homepage from 'pages/Homepage';
 import LoginPage from 'pages/LoginPage';
 import RegisterPage from 'pages/RegisterPage';
-import PublicRoute from './PublicRoute/PublicRoute';
-import Homepage from 'pages/Homepage';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
 import { refreshUser } from 'redux/auth/operations';
 import { selectIsRefreshing } from 'redux/auth/selectors';
-import { Oval } from 'react-loader-spinner';
+
+import PrivateRoute from './PrivateRoute/PrivateRoute';
+import PublicRoute from './PublicRoute/PublicRoute';
+import SharedHeader from './SharedHeader/SharedHeader';
 
 export const App = () => {
   const dispatch = useDispatch();
