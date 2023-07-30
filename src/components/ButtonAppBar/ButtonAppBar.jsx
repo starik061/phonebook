@@ -1,13 +1,12 @@
 import * as React from 'react';
+import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+
+import { MenuItem } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import { MenuItem } from '@mui/material';
-import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
-import { getContacts, logIn, signUp } from 'phoneBookAPI/phoneBookAPI';
 
 export default function ButtonAppBar() {
   useEffect(() => {
