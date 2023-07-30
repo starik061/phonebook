@@ -6,9 +6,10 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import ContactsPage from 'pages/ContactsPage';
 import Homepage from 'pages/Homepage';
 import LoginPage from 'pages/LoginPage';
-import RegisterPage from 'pages/RegisterPage';
 import { refreshUser } from 'redux/auth/operations';
 import { selectIsRefreshing } from 'redux/auth/selectors';
+
+import RegisterPage from '../RegisterPage';
 
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import PublicRoute from './PublicRoute/PublicRoute';
