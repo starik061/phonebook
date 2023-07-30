@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/phonebook/static/css/main.584f340d.css",
-    "main.js": "/phonebook/static/js/main.adeadb46.js",
+    "main.css": "/phonebook/static/css/main.d41ab0f9.css",
+    "main.js": "/phonebook/static/js/main.9e438378.js",
     "static/media/roboto-latin-500-normal.woff2": "/phonebook/static/media/roboto-latin-500-normal.f25d774ecfe0996f8eb5.woff2",
     "static/media/roboto-latin-700-normal.woff2": "/phonebook/static/media/roboto-latin-700-normal.227c93190fe7f82de3f8.woff2",
     "static/media/roboto-latin-400-normal.woff2": "/phonebook/static/media/roboto-latin-400-normal.b009a76ad6afe4ebd301.woff2",
@@ -59,11 +59,11 @@
     "static/media/roboto-greek-ext-400-normal.woff": "/phonebook/static/media/roboto-greek-ext-400-normal.f708607d2a7290fb8bfa.woff",
     "static/media/roboto-greek-ext-700-normal.woff": "/phonebook/static/media/roboto-greek-ext-700-normal.249853776d22a271b2b5.woff",
     "index.html": "/phonebook/index.html",
-    "main.584f340d.css.map": "/phonebook/static/css/main.584f340d.css.map",
-    "main.adeadb46.js.map": "/phonebook/static/js/main.adeadb46.js.map"
+    "main.d41ab0f9.css.map": "/phonebook/static/css/main.d41ab0f9.css.map",
+    "main.9e438378.js.map": "/phonebook/static/js/main.9e438378.js.map"
   },
   "entrypoints": [
-    "static/css/main.584f340d.css",
-    "static/js/main.adeadb46.js"
+    "static/css/main.d41ab0f9.css",
+    "static/js/main.9e438378.js"
   ]
 }
