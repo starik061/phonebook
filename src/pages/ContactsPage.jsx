@@ -6,6 +6,7 @@ import { Button, Container, Typography } from '@mui/material';
 import AddContactForm from 'components/AddContactForm/AddContactForm';
 import { ContactsList } from 'components/ContactsList/ContactsList';
 import EditContactForm from 'components/EditContactForm/EditContactForm';
+import AnimatedMessage from 'components/Message/AnimatedMessage';
 import Message from 'components/Message/Message';
 import { ModalWindow } from 'components/ModalWindow/ModalWindow';
 import { fetchContacts } from 'redux/contacts/operations';
@@ -79,9 +80,9 @@ const ContactsPage = () => {
         handleModalState={setOpenModal}
       />
       {message && !error && (
-        <Message type={message.type} message={message.message} />
+        <AnimatedMessage type={message.type} message={message.message} />
       )}
-      {error && <Message type="error" message="Something went wrong" />}
+      {error && <AnimatedMessage type="error" message="Something went wrong" />}
     </>
   );
 };
