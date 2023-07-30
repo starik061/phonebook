@@ -18,7 +18,7 @@ import { addContact } from 'redux/contacts/operations';
 
 const defaultTheme = createTheme();
 
-const EditContactForm = ({ setOpenModal }) => {
+const EditContactForm = ({ setOpenModal, id, name, number }) => {
   const dispatch = useDispatch();
 
   const handleAddContactFormSubmit = event => {
@@ -67,8 +67,9 @@ const EditContactForm = ({ setOpenModal }) => {
               name="name"
               autoComplete="name"
               autoFocus
+              value={name}
             />
-            <InputMask mask="+38 (099) 999-99-99">
+            <InputMask mask="+38 (099) 999-99-99" value={number}>
               {inputProps => (
                 <TextField
                   margin="normal"

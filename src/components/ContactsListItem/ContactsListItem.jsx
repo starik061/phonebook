@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 
 import CancelIcon from '@mui/icons-material/Cancel';
@@ -41,7 +42,13 @@ const ContactsListItem = ({ editContact, name, number, id }) => {
                 gap: '10px',
               }}
             >
-              <Button onClick={editContact} variant="outlined" color="success">
+              <Button
+                onClick={() => {
+                  editContact(id, name, number);
+                }}
+                variant="outlined"
+                color="success"
+              >
                 <EditIcon />
               </Button>
               <Button
