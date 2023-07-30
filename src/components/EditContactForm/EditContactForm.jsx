@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import InputMask from 'react-input-mask';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import Avatar from '@mui/material/Avatar';
@@ -15,6 +15,7 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { editContact, fetchContacts } from 'redux/contacts/operations';
+import { selectContacts } from 'redux/contacts/selectors';
 
 const defaultTheme = createTheme();
 
@@ -23,8 +24,34 @@ const EditContactForm = ({ setMessage, setOpenModal, id, name, number }) => {
   const [numberInputValue, setNumberInputValue] = useState(number);
   const dispatch = useDispatch();
 
+  const contacts = useSelector(selectContacts);
+
   const handleEditContactFormSubmit = async event => {
     event.preventDefault();
+    let isDuplicate = false;
+    const contactForCheck = {
+      name: nameInputValue,
+      number: numberInputValue,
+    };
+    //Search if such contact is already exist
+
+    contacts.forEach(contact => {
+      if (
+        contact.id !== id &&
+        (contact.name.toLowerCase() === contactForCheck.name.toLowerCase() ||
+          contact.number.toLowerCase() === contactForCheck.number.toLowerCase())
+      ) {
+        isDuplicate = true;
+      }
+    });
+    if (isDuplicate) {
+      setMessage({ message: 'Such contact is already exist', type: 'error' });
+      setTimeout(() => {
+        setMessage(null);
+      }, 2000);
+      return;
+    }
+    //______________________________________________________________________
 
     await dispatch(
       editContact({
