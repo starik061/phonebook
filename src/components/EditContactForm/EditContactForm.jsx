@@ -18,7 +18,7 @@ import { editContact, fetchContacts } from 'redux/contacts/operations';
 
 const defaultTheme = createTheme();
 
-const EditContactForm = ({ setOpenModal, id, name, number }) => {
+const EditContactForm = ({ setMessage, setOpenModal, id, name, number }) => {
   const [nameInputValue, setNameInputValue] = useState(name);
   const [numberInputValue, setNumberInputValue] = useState(number);
   const dispatch = useDispatch();
@@ -38,6 +38,10 @@ const EditContactForm = ({ setOpenModal, id, name, number }) => {
     setOpenModal(false);
 
     dispatch(fetchContacts());
+    setMessage({ type: 'success', message: 'Contact edited successfully!' });
+    setTimeout(() => {
+      setMessage(null);
+    }, 2000);
   };
   return (
     <ThemeProvider theme={defaultTheme}>

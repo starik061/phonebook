@@ -17,7 +17,7 @@ import { addContact } from 'redux/contacts/operations';
 
 const defaultTheme = createTheme();
 
-const AddContactForm = ({ setOpenModal }) => {
+const AddContactForm = ({ setOpenModal, setMessage }) => {
   const dispatch = useDispatch();
 
   const handleAddContactFormSubmit = event => {
@@ -32,6 +32,10 @@ const AddContactForm = ({ setOpenModal }) => {
       })
     );
     setOpenModal(false);
+    setMessage({ type: 'success', message: 'Contact added successfully!' });
+    setTimeout(() => {
+      setMessage(null);
+    }, 2000);
   };
   return (
     <ThemeProvider theme={defaultTheme}>

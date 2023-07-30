@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import ContactsListItem from 'components/ContactsListItem/ContactsListItem';
 
-export const ContactsList = ({ editContact, contacts }) => {
+export const ContactsList = ({ editContact, contacts, setMessage }) => {
   return (
     <>
       <Box sx={{ flexGrow: 1, p: '20px' }}>
@@ -20,6 +20,7 @@ export const ContactsList = ({ editContact, contacts }) => {
               number={number}
               id={id}
               editContact={editContact}
+              setMessage={setMessage}
             ></ContactsListItem>
           ))}
         </Grid>

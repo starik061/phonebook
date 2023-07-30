@@ -15,11 +15,15 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemText from '@mui/material/ListItemText';
 import { deleteContact } from 'redux/contacts/operations';
 
-const ContactsListItem = ({ editContact, name, number, id }) => {
+const ContactsListItem = ({ editContact, name, number, id, setMessage }) => {
   const dispatch = useDispatch();
 
   const handleDeleteContactButtonClick = () => {
     dispatch(deleteContact(id));
+    setMessage({ message: 'Contact successfully deleted', type: 'success' });
+    setTimeout(() => {
+      setMessage(null);
+    }, 2000);
   };
   return (
     <>
