@@ -3,13 +3,12 @@ import { Oval } from 'react-loader-spinner';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
+import ContactsPage from 'pages/ContactsPage';
+import Homepage from 'pages/Homepage';
+import LoginPage from 'pages/LoginPage';
+import RegisterPage from 'pages/RegisterPage';
 import { refreshUser } from 'redux/auth/operations';
 import { selectIsRefreshing } from 'redux/auth/selectors';
-
-import ContactsPage from '../pages/ContactsPage';
-import Homepage from '../pages/Homepage';
-import LoginPage from '../pages/LoginPage';
-import RegisterPage from '../pages/RegisterPage';
 
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import PublicRoute from './PublicRoute/PublicRoute';
