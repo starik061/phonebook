@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { initializeUseSelector } from 'react-redux/es/hooks/useSelector';
 
 import { Button, Container, Typography } from '@mui/material';
 import AddContactForm from 'components/AddContactForm/AddContactForm';
