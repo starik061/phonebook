@@ -1,6 +1,6 @@
 import React from 'react';
 import InputMask from 'react-input-mask';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import Avatar from '@mui/material/Avatar';
@@ -14,17 +14,37 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { addContact } from 'redux/contacts/operations';
+import { selectContacts } from 'redux/contacts/selectors';
 
 const defaultTheme = createTheme();
 
 const AddContactForm = ({ setOpenModal, setMessage }) => {
   const dispatch = useDispatch();
+  const contacts = useSelector(selectContacts);
 
   const handleAddContactFormSubmit = event => {
     event.preventDefault();
+    let isDuplicate = false;
 
     const contact = new FormData(event.currentTarget);
-
+    const contactForCheck = {
+      name: contact.get('name'),
+      number: contact.get('phone'),
+    };
+    //Search if such contact is already exist
+    contacts.forEach(contact => {
+      if (
+        contact.name.toLowerCase() === contactForCheck.name.toLowerCase() ||
+        contact.number.toLowerCase() === contactForCheck.number.toLowerCase()
+      ) {
+        isDuplicate = true;
+      }
+    });
+    if (isDuplicate) {
+      setMessage({ message: 'Such contact is already exist', type: 'error' });
+      return;
+    }
+    //______________________________________________________________________
     dispatch(
       addContact({
         name: contact.get('name'),

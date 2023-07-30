@@ -12,6 +12,7 @@ const Message = ({ message, type = 'error' }) => {
         left: '50%',
         transform: 'translate(-50%)',
         transition: 'all 0.5s linear',
+        zIndex: '9999',
       }}
     >
       {message}
