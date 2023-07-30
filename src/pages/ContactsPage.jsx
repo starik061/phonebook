@@ -1,17 +1,25 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Button, Container, Typography } from '@mui/material';
 import AddContactForm from 'components/AddContactForm/AddContactForm';
 import { ContactsList } from 'components/ContactsList/ContactsList';
 import EditContactForm from 'components/EditContactForm/EditContactForm';
 import { ModalWindow } from 'components/ModalWindow/ModalWindow';
+import { fetchContacts } from 'redux/contacts/operations';
+import { selectContacts } from 'redux/contacts/selectors';
 
 const ContactsPage = () => {
   const [openModal, setOpenModal] = useState(false);
   const [modalChildren, setModalChildren] = useState(null);
 
   const dispatch = useDispatch();
+  const contacts = useSelector(selectContacts);
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   const handleAddContactButtonClick = () => {
     setOpenModal(true);
@@ -44,7 +52,10 @@ const ContactsPage = () => {
         >
           Add contact
         </Button>
-        <ContactsList editContact={handleEditContactButtonClick} />
+        <ContactsList
+          editContact={handleEditContactButtonClick}
+          contacts={contacts}
+        />
       </Container>
       <ModalWindow
         openModal={openModal}

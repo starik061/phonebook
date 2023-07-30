@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useDispatch } from 'react-redux';
 
 import CancelIcon from '@mui/icons-material/Cancel';
 import EditIcon from '@mui/icons-material/Edit';
@@ -12,8 +13,14 @@ import Grid from '@mui/material/Grid';
 import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemText from '@mui/material/ListItemText';
+import { deleteContact } from 'redux/contacts/operations';
 
-const ContactsListItem = ({ editContact }) => {
+const ContactsListItem = ({ editContact, name, number, id }) => {
+  const dispatch = useDispatch();
+
+  const handleDeleteContactButtonClick = () => {
+    dispatch(deleteContact(id));
+  };
   return (
     <>
       <Grid item xs={2} sm={4} md={4}>
@@ -25,7 +32,7 @@ const ContactsListItem = ({ editContact }) => {
                   <ImageIcon />
                 </Avatar>
               </ListItemAvatar>
-              <ListItemText primary="Name" secondary="+3806-999-111" />
+              <ListItemText primary={name} secondary={number} />
             </ListItem>
             <Container
               sx={{
@@ -37,7 +44,11 @@ const ContactsListItem = ({ editContact }) => {
               <Button onClick={editContact} variant="outlined" color="success">
                 <EditIcon />
               </Button>
-              <Button variant="outlined" color="error">
+              <Button
+                variant="outlined"
+                color="error"
+                onClick={handleDeleteContactButtonClick}
+              >
                 <CancelIcon />
               </Button>
             </Container>
