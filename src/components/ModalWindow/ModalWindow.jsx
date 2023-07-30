@@ -18,7 +18,7 @@ const style = {
   pb: 3,
 };
 
-export const ModalWindow = ({ openModal, handleModalState }) => {
+export const ModalWindow = ({ openModal, handleModalState, children }) => {
   return (
     <div>
       <Modal
@@ -28,10 +28,11 @@ export const ModalWindow = ({ openModal, handleModalState }) => {
         aria-describedby="parent-modal-description"
       >
         <Box sx={{ ...style, width: 400 }}>
-          <h2 id="parent-modal-title">Text in a modal</h2>
+          {/* <h2 id="parent-modal-title">Text in a modal</h2>
           <p id="parent-modal-description">
             Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </p>
+          </p> */}
+          {children}
         </Box>
       </Modal>
     </div>

@@ -12,9 +12,8 @@ import Grid from '@mui/material/Grid';
 import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemText from '@mui/material/ListItemText';
-import { ModalWindow } from 'components/ModalWindow/ModalWindow';
 
-const ContactsListItem = () => {
+const ContactsListItem = ({ editContact }) => {
   return (
     <>
       <Grid item xs={2} sm={4} md={4}>
@@ -35,7 +34,7 @@ const ContactsListItem = () => {
                 gap: '10px',
               }}
             >
-              <Button variant="outlined" color="success">
+              <Button onClick={editContact} variant="outlined" color="success">
                 <EditIcon />
               </Button>
               <Button variant="outlined" color="error">
