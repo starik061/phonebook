@@ -15,11 +15,11 @@ const ContactsPage = () => {
 
   const handleAddContactButtonClick = () => {
     setOpenModal(true);
-    setModalChildren(<AddContactForm />);
+    setModalChildren(<AddContactForm setOpenModal={setOpenModal} />);
   };
   const handleEditContactButtonClick = () => {
     setOpenModal(true);
-    setModalChildren(<EditContactForm />);
+    setModalChildren(<EditContactForm setOpenModal={setOpenModal} />);
   };
   return (
     <>

@@ -1,9 +1,7 @@
 import React from 'react';
 import InputMask from 'react-input-mask';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
@@ -15,11 +13,26 @@ import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { logIn } from 'redux/auth/operations';
+import { addContact } from 'redux/contacts/operations';
 
 const defaultTheme = createTheme();
 
-const AddContactForm = () => {
+const AddContactForm = ({ setOpenModal }) => {
+  const dispatch = useDispatch();
+
+  const handleAddContactFormSubmit = event => {
+    event.preventDefault();
+
+    const contact = new FormData(event.currentTarget);
+
+    dispatch(
+      addContact({
+        name: contact.get('name'),
+        number: contact.get('phone'),
+      })
+    );
+    setOpenModal(false);
+  };
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
@@ -40,7 +53,7 @@ const AddContactForm = () => {
           </Typography>
           <Box
             component="form"
-            onSubmit={console.log('Submit')}
+            onSubmit={handleAddContactFormSubmit}
             noValidate
             sx={{ mt: 1 }}
           >
@@ -54,11 +67,7 @@ const AddContactForm = () => {
               autoComplete="name"
               autoFocus
             />
-            <InputMask
-              mask="+38 (099) 999-99-99"
-              // value="99/99/9999"
-              // onChange={}
-            >
+            <InputMask mask="+38 (099) 999-99-99">
               {inputProps => (
                 <TextField
                   margin="normal"
