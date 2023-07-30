@@ -42,6 +42,9 @@ const AddContactForm = ({ setOpenModal, setMessage }) => {
     });
     if (isDuplicate) {
       setMessage({ message: 'Such contact is already exist', type: 'error' });
+      setTimeout(() => {
+        setMessage(null);
+      }, 2000);
       return;
     }
     //______________________________________________________________________
