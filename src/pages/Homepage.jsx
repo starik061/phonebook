@@ -5,7 +5,13 @@ import Typography from '@mui/material/Typography';
 
 const Homepage = () => {
   return (
-    <Container maxWidth="xl">
+    <Container
+      sx={{
+        width: '70%',
+        height: '70%',
+      }}
+      maxWidth="xl"
+    >
       <Typography variant="h1" component="h2">
         Phonebook app
       </Typography>

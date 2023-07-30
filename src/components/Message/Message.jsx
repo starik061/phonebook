@@ -7,7 +7,6 @@ const Message = ({ message, type = 'error' }) => {
     <Alert
       severity={type}
       sx={{
-        width: '50%',
         position: 'absolute',
         top: '50%',
         left: '50%',

@@ -7,7 +7,6 @@ import AddContactForm from 'components/AddContactForm/AddContactForm';
 import { ContactsList } from 'components/ContactsList/ContactsList';
 import EditContactForm from 'components/EditContactForm/EditContactForm';
 import AnimatedMessage from 'components/Message/AnimatedMessage';
-import Message from 'components/Message/Message';
 import { ModalWindow } from 'components/ModalWindow/ModalWindow';
 import { fetchContacts } from 'redux/contacts/operations';
 import { selectContacts, selectError } from 'redux/contacts/selectors';

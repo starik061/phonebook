@@ -15,6 +15,8 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemText from '@mui/material/ListItemText';
 import { deleteContact } from 'redux/contacts/operations';
 
+import { StyledContainer } from './ContactListItemStyled';
+
 const ContactsListItem = ({ editContact, name, number, id, setMessage }) => {
   const dispatch = useDispatch();
 
@@ -26,10 +28,15 @@ const ContactsListItem = ({ editContact, name, number, id, setMessage }) => {
     }, 2000);
   };
   return (
-    <>
-      <Grid item xs={2} sm={4} md={4}>
+    <Grid item xs={2} sm={4} md={4}>
+      <StyledContainer>
         <Card sx={{ minWidth: 275 }}>
-          <CardContent sx={{ position: 'relative' }}>
+          <CardContent
+            sx={{
+              position: 'relative',
+              transition: '0.3s ease-in',
+            }}
+          >
             <ListItem>
               <ListItemAvatar>
                 <Avatar>
@@ -64,8 +71,8 @@ const ContactsListItem = ({ editContact, name, number, id, setMessage }) => {
             </Container>
           </CardContent>
         </Card>
-      </Grid>
-    </>
+      </StyledContainer>
+    </Grid>
   );
 };
 
