@@ -16,7 +16,7 @@ import { register } from 'redux/auth/operations';
 
 const defaultTheme = createTheme();
 
-const RegisterPage = () => {
+export const RegisterPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -118,5 +118,3 @@ const RegisterPage = () => {
     </ThemeProvider>
   );
 };
-
-export default RegisterPage;
