@@ -1,9 +1,9 @@
 import React from 'react';
+import { useState } from 'react';
 import InputMask from 'react-input-mask';
 import { useDispatch } from 'react-redux';
 
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
-import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -14,25 +14,30 @@ import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { addContact } from 'redux/contacts/operations';
+import { editContact, fetchContacts } from 'redux/contacts/operations';
 
 const defaultTheme = createTheme();
 
 const EditContactForm = ({ setOpenModal, id, name, number }) => {
+  const [nameInputValue, setNameInputValue] = useState(name);
+  const [numberInputValue, setNumberInputValue] = useState(number);
   const dispatch = useDispatch();
 
-  const handleAddContactFormSubmit = event => {
+  const handleEditContactFormSubmit = async event => {
     event.preventDefault();
 
-    const contact = new FormData(event.currentTarget);
-
-    dispatch(
-      addContact({
-        name: contact.get('name'),
-        number: contact.get('phone'),
+    await dispatch(
+      editContact({
+        id,
+        contactData: {
+          name: nameInputValue,
+          number: numberInputValue,
+        },
       })
     );
     setOpenModal(false);
+
+    dispatch(fetchContacts());
   };
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -54,7 +59,7 @@ const EditContactForm = ({ setOpenModal, id, name, number }) => {
           </Typography>
           <Box
             component="form"
-            onSubmit={handleAddContactFormSubmit}
+            onSubmit={handleEditContactFormSubmit}
             noValidate
             sx={{ mt: 1 }}
           >
@@ -67,9 +72,18 @@ const EditContactForm = ({ setOpenModal, id, name, number }) => {
               name="name"
               autoComplete="name"
               autoFocus
-              value={name}
+              value={nameInputValue}
+              onChange={event => {
+                setNameInputValue(event.target.value);
+              }}
             />
-            <InputMask mask="+38 (099) 999-99-99" value={number}>
+            <InputMask
+              mask="+38 (099) 999-99-99"
+              value={numberInputValue}
+              onChange={event => {
+                setNumberInputValue(event.target.value);
+              }}
+            >
               {inputProps => (
                 <TextField
                   margin="normal"
@@ -89,7 +103,7 @@ const EditContactForm = ({ setOpenModal, id, name, number }) => {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Add contact
+              Edit contact
             </Button>
             <Grid container>
               <Grid item xs>
