@@ -57,6 +57,11 @@ const Homepage = () => {
                 align="center"
                 color="text.primary"
                 gutterBottom
+                sx={{
+                  '@media (max-width: 435px)': {
+                    fontSize: '40px',
+                  },
+                }}
               >
                 Phonebook app
               </Typography>
