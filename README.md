@@ -1,5 +1,5 @@
 <div id="header" align="center">
-<h1>Phonebook app</h1>
+<h1 style="margin-top:0">Phonebook app</h1>
 
 <p>A simple demonstration app connected to Swagger backend API - with registration,
 log in, log out, adding, removing and updating of your contacts.</p>
