@@ -1,4 +1,4 @@
-<div style="margin-top:0" align="center">
+<div style="margin-top:0; padding-top:0" align="center">
 <h1 style="margin-top:0">Phonebook app</h1>
 <p>A simple demonstration app connected to Swagger backend API - with registration,
 log in, log out, adding, removing and updating of your contacts.</p>
