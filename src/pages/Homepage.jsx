@@ -1,29 +1,86 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
+import CssBaseline from '@mui/material/CssBaseline';
+import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { selectIsLoggedIn } from 'redux/auth/selectors';
+
+const defaultTheme = createTheme();
 
 const Homepage = () => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const navigate = useNavigate();
+
+  const handleLogInButtonClick = () => {
+    navigate('/login');
+  };
+
+  const handleContactsButtonClick = () => {
+    navigate('/contacts');
+  };
   return (
-    <Container
-      sx={{
-        width: '70%',
-        height: '70%',
-      }}
-      maxWidth="xl"
-    >
-      <Typography variant="h1" component="h2">
-        Phonebook app
-      </Typography>
-      <Typography variant="h3" component="h2">
-        A simple phonebook app connected to Swagger backend API - you can
-        register, log in, log out, add, remove, update or filter your contacts.
-      </Typography>
-      <Typography variant="p">
-        Used Redux Toolkit, RTK Query React Router
-      </Typography>
-      ;
-    </Container>
+    <>
+      <ThemeProvider theme={defaultTheme}>
+        <CssBaseline />
+
+        <main>
+          {/* Hero unit */}
+          <Box
+            sx={{
+              bgcolor: 'background.paper',
+              pt: 8,
+              pb: 6,
+            }}
+          >
+            <Container maxWidth="sm">
+              <Typography
+                component="h1"
+                variant="h2"
+                align="center"
+                color="text.primary"
+                gutterBottom
+              >
+                Phonebook app
+              </Typography>
+              <Typography
+                variant="h5"
+                align="center"
+                color="text.secondary"
+                paragraph
+              >
+                Store your contacts in a convenient and secure place.
+              </Typography>
+              <Stack
+                sx={{ pt: 4 }}
+                direction="row"
+                spacing={2}
+                justifyContent="center"
+              >
+                {isLoggedIn ? (
+                  <Button
+                    variant="outlined"
+                    onClick={handleContactsButtonClick}
+                  >
+                    My contacts
+                  </Button>
+                ) : (
+                  <Button variant="outlined" onClick={handleLogInButtonClick}>
+                    Log in
+                  </Button>
+                )}
+              </Stack>
+            </Container>
+          </Box>
+          <Container sx={{ py: 8 }} maxWidth="md"></Container>
+        </main>
+      </ThemeProvider>
+    </>
   );
 };
 
