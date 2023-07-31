@@ -11,6 +11,8 @@ import Typography from '@mui/material/Typography';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { selectIsLoggedIn } from 'redux/auth/selectors';
 
+import bgImg from '../img/phonebook_home_bg.png';
+
 const defaultTheme = createTheme();
 
 const Homepage = () => {
@@ -29,16 +31,26 @@ const Homepage = () => {
       <ThemeProvider theme={defaultTheme}>
         <CssBaseline />
 
-        <main>
-          {/* Hero unit */}
+        <main sx={{ backgroundImage: { bgImg } }}>
           <Box
             sx={{
               bgcolor: 'background.paper',
               pt: 8,
               pb: 6,
+              pl: 1,
+              pr: 1,
             }}
           >
-            <Container maxWidth="sm">
+            <Container
+              maxWidth="sm"
+              sx={{
+                pt: 2,
+                pb: 4,
+                boxShadow: '0px 0px 0px 2px rgba(33,149,243,1)',
+
+                borderRadius: '5px',
+              }}
+            >
               <Typography
                 component="h1"
                 variant="h2"
@@ -56,8 +68,14 @@ const Homepage = () => {
               >
                 Store your contacts in a convenient and secure place.
               </Typography>
+              <img
+                src={bgImg}
+                width="100px"
+                alt="Phonebook"
+                style={{ display: 'block', margin: '0 auto' }}
+              />
               <Stack
-                sx={{ pt: 4 }}
+                sx={{ pt: '20px' }}
                 direction="row"
                 spacing={2}
                 justifyContent="center"

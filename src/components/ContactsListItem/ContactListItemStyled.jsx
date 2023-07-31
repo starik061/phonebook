@@ -1,9 +1,10 @@
 import styled from '@emotion/styled';
+import Card from '@mui/material/Card';
 
-export const StyledContainer = styled.div`
+export const StyledCard = styled(Card)`
   width: 100%;
   border-radius: 5px;
   &:hover {
-    box-shadow: 3px 0px 3px 3px rgba(22, 147, 242, 0.79);
+    box-shadow: 0px 0px 0px 2px rgba(33, 149, 243, 1);
   }
 `;
