@@ -1,18 +1,20 @@
-import { useEffect } from 'react';
+import { useEffect,lazy } from 'react';
 import { Oval } from 'react-loader-spinner';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
-import ContactsPage from 'pages/ContactsPage';
-import Homepage from 'pages/Homepage';
-import LoginPage from 'pages/LoginPage';
-import SignUpPage from 'pages/SignUpPage.jsx';
 import { refreshUser } from 'redux/auth/operations';
 import { selectIsRefreshing } from 'redux/auth/selectors';
 
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import PublicRoute from './PublicRoute/PublicRoute';
 import SharedHeader from './SharedHeader/SharedHeader';
+
+
+const ContactsPage = lazy(() => import("pages/ContactsPage"));
+const LoginPage = lazy(() => import("pages/LoginPage"));
+const SignUpPage = lazy(() => import("pages/SignUpPage"));
+const Homepage = lazy(() => import("pages/Homepage"));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -42,10 +44,11 @@ export const App = () => {
       />
     </div>
   ) : (
+
     <Routes>
       <Route path="/" element={<SharedHeader />}>
         <Route index element={<Homepage />} />
-        <Route
+          <Route
           path="contacts"
           element={<PrivateRoute component={<ContactsPage />} />}
         />
@@ -58,7 +61,9 @@ export const App = () => {
           element={<PublicRoute component={<SignUpPage />} />}
         />
         <Route path="*" element={<Navigate to="/" replace />} />
-      </Route>
+        </Route>
+
     </Routes>
+
   );
 };

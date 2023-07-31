@@ -23,6 +23,8 @@ import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import { logOut } from 'redux/auth/operations';
 import { selectIsLoggedIn, selectUserName } from 'redux/auth/selectors';
+import { Oval } from 'react-loader-spinner';
+import { Suspense } from 'react';
 
 const SharedHeader = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -246,7 +248,25 @@ const SharedHeader = () => {
           </Toolbar>
         </Container>
       </AppBar>
-      <Outlet />
+       <Suspense fallback={<div
+      style={{
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%,-50%)',
+      }}
+    >
+      <Oval
+        ariaLabel="loading-indicator"
+        height={100}
+        width={100}
+        strokeWidth={5}
+        strokeWidthSecondary={1}
+        color="#757ce8"
+        secondaryColor="white"
+      />
+    </div>}><Outlet /></Suspense>
+
     </>
   );
 };
