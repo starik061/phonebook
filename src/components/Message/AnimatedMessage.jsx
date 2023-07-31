@@ -1,3 +1,5 @@
+import { createPortal } from 'react-dom';
+
 import { animated, useSpring } from '@react-spring/web';
 
 import Message from './Message';
@@ -11,10 +13,11 @@ function AnimatedMessage({ message, type }) {
     []
   );
 
-  return (
+  return createPortal(
     <animated.div style={props}>
       <Message message={message} type={type} />
-    </animated.div>
+    </animated.div>,
+    document.querySelector('#message-root')
   );
 }
 export default AnimatedMessage;
