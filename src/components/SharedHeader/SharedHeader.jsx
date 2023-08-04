@@ -4,6 +4,8 @@
 // carramba123@gmail.com
 import * as React from 'react';
 import { useState } from 'react';
+import { Suspense } from 'react';
+import { Oval } from 'react-loader-spinner';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Outlet } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
@@ -23,8 +25,6 @@ import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import { logOut } from 'redux/auth/operations';
 import { selectIsLoggedIn, selectUserName } from 'redux/auth/selectors';
-import { Oval } from 'react-loader-spinner';
-import { Suspense } from 'react';
 
 const SharedHeader = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -78,8 +78,8 @@ const SharedHeader = () => {
               sx={{
                 mr: 2,
                 display: { xs: 'none', md: 'flex' },
-                fontFamily: 'Segoe UI',
-                fontWeight: 700,
+                fontFamily: 'Roboto',
+                fontWeight: 400,
                 letterSpacing: '.3rem',
                 color: 'inherit',
                 textDecoration: 'none',
@@ -142,8 +142,8 @@ const SharedHeader = () => {
                 mr: 2,
                 display: { xs: 'flex', md: 'none' },
                 flexGrow: 1,
-                fontFamily: 'Segoe UI',
-                fontWeight: 700,
+                fontFamily: 'Roboto',
+                fontWeight: 400,
                 letterSpacing: '.3rem',
                 color: 'inherit',
                 textDecoration: 'none',
@@ -248,25 +248,30 @@ const SharedHeader = () => {
           </Toolbar>
         </Container>
       </AppBar>
-       <Suspense fallback={<div
-      style={{
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%,-50%)',
-      }}
-    >
-      <Oval
-        ariaLabel="loading-indicator"
-        height={100}
-        width={100}
-        strokeWidth={5}
-        strokeWidthSecondary={1}
-        color="#757ce8"
-        secondaryColor="white"
-      />
-    </div>}><Outlet /></Suspense>
-
+      <Suspense
+        fallback={
+          <div
+            style={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%,-50%)',
+            }}
+          >
+            <Oval
+              ariaLabel="loading-indicator"
+              height={100}
+              width={100}
+              strokeWidth={5}
+              strokeWidthSecondary={1}
+              color="#757ce8"
+              secondaryColor="white"
+            />
+          </div>
+        }
+      >
+        <Outlet />
+      </Suspense>
     </>
   );
 };
